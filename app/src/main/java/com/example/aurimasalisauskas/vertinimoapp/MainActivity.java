@@ -1,5 +1,6 @@
 package com.example.aurimasalisauskas.vertinimoapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
                 Ivertinimas ivertinimas = new Ivertinimas();
                 ivertinimas.setPasirinkimas(5);
                 Database.add(ivertinimas);
-                Toast.makeText(MainActivity.this, "Ačiū už puikų įvertinimą", Toast.LENGTH_LONG).show();
+                Toast toast = Toast.makeText(MainActivity.this, "Ačiū už puikų įvertinimą", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 30);
+                toast.show();
             }
         });
 
