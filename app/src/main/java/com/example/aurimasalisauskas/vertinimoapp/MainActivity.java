@@ -2,6 +2,7 @@ package com.example.aurimasalisauskas.vertinimoapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -123,6 +124,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } catch (IOException e) {
                 }
+                String filename = "rezultatai.txt";
+                File filelocation = new File(Environment.getDownloadCacheDirectory().getAbsolutePath(),filename);
+                Uri path = Uri.fromFile(filelocation);
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent .setType("vnd.android.cursor.dir/email");
+                String to[] = {"loonixas@gmail.com"};
+                startActivity(Intent.createChooser(emailIntent, "Send email..."));
             }
         });
     }
