@@ -110,27 +110,34 @@ public class MainActivity extends AppCompatActivity {
                     File dir = new File(sdCard.getAbsolutePath() + "/saugykla");
                     Log.d("kelias", dir.getAbsolutePath());
                     dir.mkdirs();
-                    File file = new File(dir, "rezultatai.txt");
+                    File file = new File(dir, "rezultatai.csv");
+                    file.delete();
                     if (!file.exists()) {
                         file.createNewFile();
                         FileWriter writer = new FileWriter(file);
-                        writer.write("Rezultatai:" + "\n\r");
+                        writer.append("Balas, Personalas, Inventorius, Pramogos, Švara, Kita" + "\n");
                         for (Ivertinimas ivertinimas : Database.getIvertinimai()) {
-                            writer.append("Ivertinimas: " + ivertinimas.getPasirinkimas() + ", Trukumai: " + ivertinimas.getTrukumai() + "\n\r");
+                            if (ivertinimas.getPasirinkimas() == 5) {
+                                writer.append("5, 0, 0, 0, 0, 0" + "\n");
+                            } else {
+                                writer.append(ivertinimas.getPasirinkimas() + ", " + ivertinimas.getTrukumai().get(0) + ", " + ivertinimas.getTrukumai().get(1)+ ", " + ivertinimas.getTrukumai().get(2)+ ", " + ivertinimas.getTrukumai().get(3)+ ", " + ivertinimas.getTrukumai().get(4) + "\n");
+                            }
                             Log.d("IVERTINIMAI", "Ivertinimas: " + ivertinimas.getPasirinkimas() + ", Trukumai: " + ivertinimas.getTrukumai());
                         }
                         writer.flush();
                         writer.close();
+
+                        String filename = "rezultatai.csv";
+                        File filelocation = new File(Environment.getDownloadCacheDirectory().getAbsolutePath(),filename);
+                        Uri path = Uri.fromFile(filelocation);
+                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                        emailIntent .setType("vnd.android.cursor.dir/email");
+                        String to[] = {"loonixas@gmail.com"};
+                        startActivity(Intent.createChooser(emailIntent, "Send email..."));
                     }
                 } catch (IOException e) {
                 }
-                String filename = "rezultatai.txt";
-                File filelocation = new File(Environment.getDownloadCacheDirectory().getAbsolutePath(),filename);
-                Uri path = Uri.fromFile(filelocation);
-                Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                emailIntent .setType("vnd.android.cursor.dir/email");
-                String to[] = {"loonixas@gmail.com"};
-                startActivity(Intent.createChooser(emailIntent, "Send email..."));
+
             }
         });
     }

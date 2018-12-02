@@ -15,7 +15,7 @@ public class PrastasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.prastas_activity);
 
         final CheckBox c1 = findViewById(R.id.checkBox);
@@ -33,19 +33,29 @@ public class PrastasActivity extends AppCompatActivity {
                 Ivertinimas ivertinimas = new Ivertinimas();
                 ivertinimas.setPasirinkimas(pasirinkimas);
                 if (c1.isChecked()) {
-                    ivertinimas.getTrukumai().add("Personalas");
+                    ivertinimas.getTrukumai().add("1");
+                } else {
+                    ivertinimas.getTrukumai().add("0");
                 }
                 if (c2.isChecked()) {
-                    ivertinimas.getTrukumai().add("Inventorius");
+                    ivertinimas.getTrukumai().add("1");
+                } else {
+                    ivertinimas.getTrukumai().add("0");
                 }
                 if (c3.isChecked()) {
-                    ivertinimas.getTrukumai().add("Pramogos");
+                    ivertinimas.getTrukumai().add("1");
+                } else {
+                    ivertinimas.getTrukumai().add("0");
                 }
                 if (c4.isChecked()) {
-                    ivertinimas.getTrukumai().add("Švara");
+                    ivertinimas.getTrukumai().add("1");
+                } else {
+                    ivertinimas.getTrukumai().add("0");
                 }
                 if (c5.isChecked()) {
-                    ivertinimas.getTrukumai().add("Kita");
+                    ivertinimas.getTrukumai().add("1");
+                } else {
+                    ivertinimas.getTrukumai().add("0");
                 }
                 Database.add(ivertinimas);
                 finish();
