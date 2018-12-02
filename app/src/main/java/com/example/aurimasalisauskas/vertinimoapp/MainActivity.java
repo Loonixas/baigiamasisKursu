@@ -11,6 +11,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
+import android.os.Environment;
+
+import java.io.File;
+import java.io.FileWriter;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -23,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         Button mygtukas1 = findViewById(R.id.mygtukoId1);
@@ -89,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 ivertinimas.setPasirinkimas(5);
                 Database.add(ivertinimas);
                 Toast toast = Toast.makeText(MainActivity.this, "Ačiū už puikų įvertinimą", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 30);
+                toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 30);
                 toast.show();
             }
         });
@@ -97,8 +101,27 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.picture).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (Ivertinimas ivertinimas : Database.getIvertinimai()) {
-                    Log.d("IVERTINIMAI", "Ivertinimas: " + ivertinimas.getPasirinkimas() + ", Trukumai: " + ivertinimas.getTrukumai());
+//                for (Ivertinimas ivertinimas : Database.getIvertinimai()) {
+//                    Log.d("IVERTINIMAI", "Ivertinimas: " + ivertinimas.getPasirinkimas() + ", Trukumai: " + ivertinimas.getTrukumai());
+//                }
+                try {
+                    File sdCard = Environment.getExternalStorageDirectory();
+                    File dir = new File(sdCard.getAbsolutePath() + "/saugykla");
+                    Log.d("kelias", dir.getAbsolutePath());
+                    dir.mkdirs();
+                    File file = new File(dir, "rezultatai.txt");
+                    if (!file.exists()) {
+                        file.createNewFile();
+                        FileWriter writer = new FileWriter(file);
+                        writer.write("Rezultatai:" + "\n\r");
+                        for (Ivertinimas ivertinimas : Database.getIvertinimai()) {
+                            writer.append("Ivertinimas: " + ivertinimas.getPasirinkimas() + ", Trukumai: " + ivertinimas.getTrukumai() + "\n\r");
+                            Log.d("IVERTINIMAI", "Ivertinimas: " + ivertinimas.getPasirinkimas() + ", Trukumai: " + ivertinimas.getTrukumai());
+                        }
+                        writer.flush();
+                        writer.close();
+                    }
+                } catch (IOException e) {
                 }
             }
         });
