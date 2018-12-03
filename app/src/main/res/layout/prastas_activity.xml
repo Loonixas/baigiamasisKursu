@@ -15,14 +15,14 @@
         android:layout_margin="25dp"
         android:textColor="@android:color/holo_orange_dark"
         android:text="Ko, Jūsų nuomone, trūko iki aukščiausio įvertinimo?"
-        android:textSize="40dp" />
+        android:textSize="40sp" />
 
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
@@ -33,8 +33,8 @@
         android:id="@+id/checkBox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:layout_marginLeft="100dp"
+        android:textSize="25sp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="Inventoriaus kokybės" />
@@ -44,8 +44,8 @@
         android:id="@+id/checkBox3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:layout_marginLeft="100dp"
+        android:textSize="25sp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="Pramogų įvairovės" />
@@ -54,8 +54,8 @@
         android:id="@+id/checkBox4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:layout_marginLeft="100dp"
+        android:textSize="25sp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="Centro švaros ir tvarkos" />
@@ -64,8 +64,8 @@
         android:id="@+id/checkBox5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:layout_marginLeft="100dp"
+        android:textSize="25sp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
         android:text="Kita" />
 
@@ -76,7 +76,7 @@
         android:layout_margin="50dp"
         android:textColor="@android:color/holo_blue_dark"
         android:layout_gravity="center"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:text="Patvirtinkite" />
 
 </LinearLayout>

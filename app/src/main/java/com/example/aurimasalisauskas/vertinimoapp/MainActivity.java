@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 ivertinimas.setPasirinkimas(5);
                 Database.add(ivertinimas);
                 Toast toast = Toast.makeText(MainActivity.this, "Ačiū už puikų įvertinimą", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 30);
+                toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 200);
                 toast.show();
             }
         });
@@ -102,9 +102,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.picture).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                for (Ivertinimas ivertinimas : Database.getIvertinimai()) {
-//                    Log.d("IVERTINIMAI", "Ivertinimas: " + ivertinimas.getPasirinkimas() + ", Trukumai: " + ivertinimas.getTrukumai());
-//                }
                 try {
                     File sdCard = Environment.getExternalStorageDirectory();
                     File dir = new File(sdCard.getAbsolutePath() + "/saugykla");
@@ -120,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                             if (ivertinimas.getPasirinkimas() == 5) {
                                 writer.append("5, 0, 0, 0, 0, 0" + "\n");
                             } else {
-                                writer.append(ivertinimas.getPasirinkimas() + ", " + ivertinimas.getTrukumai().get(0) + ", " + ivertinimas.getTrukumai().get(1)+ ", " + ivertinimas.getTrukumai().get(2)+ ", " + ivertinimas.getTrukumai().get(3)+ ", " + ivertinimas.getTrukumai().get(4) + "\n");
+                                writer.append(ivertinimas.getPasirinkimas() + ", " + ivertinimas.getTrukumai().get(0) + ", " + ivertinimas.getTrukumai().get(1) + ", " + ivertinimas.getTrukumai().get(2) + ", " + ivertinimas.getTrukumai().get(3) + ", " + ivertinimas.getTrukumai().get(4) + "\n");
                             }
                             Log.d("IVERTINIMAI", "Ivertinimas: " + ivertinimas.getPasirinkimas() + ", Trukumai: " + ivertinimas.getTrukumai());
                         }
@@ -128,10 +125,10 @@ public class MainActivity extends AppCompatActivity {
                         writer.close();
 
                         String filename = "rezultatai.csv";
-                        File filelocation = new File(Environment.getDownloadCacheDirectory().getAbsolutePath(),filename);
+                        File filelocation = new File(Environment.getDownloadCacheDirectory().getAbsolutePath(), filename);
                         Uri path = Uri.fromFile(filelocation);
                         Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                        emailIntent .setType("vnd.android.cursor.dir/email");
+                        emailIntent.setType("vnd.android.cursor.dir/email");
                         String to[] = {"loonixas@gmail.com"};
                         startActivity(Intent.createChooser(emailIntent, "Send email..."));
                     }
